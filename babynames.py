@@ -44,7 +44,9 @@ def extract_names(filename):
     ['2006', 'Aaliyah 91', 'Aaron 57', 'Abagail 895', ...]
     """
     names = []
-    # +++your code here+++
+    with open(filename) as f:
+        book=f.read()
+        print(book)
     return names
 
 
