@@ -44,10 +44,13 @@ def extract_names(filename):
     ['2006', 'Aaliyah 91', 'Aaron 57', 'Abagail 895', ...]
     """
     names = []
-    with open(filename) as f:
-        book=f.read()
-        print(book)
-    return names
+    # fname = codecs.open("baby1990.html","r","utf-8")
+    # print(file.read())
+    # StreamReacorder = file
+    # print(codecs.StreamRecorder.read())
+    htmlfile = open(filename, "r")
+    source = htmlfile.read()
+    print(source)
 
 
 def create_parser():
