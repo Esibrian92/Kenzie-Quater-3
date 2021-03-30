@@ -34,6 +34,7 @@ Suggested milestones for incremental development:
 import sys
 import re
 import argparse
+import itertools
 
 
 def extract_names(filename):
@@ -44,13 +45,28 @@ def extract_names(filename):
     ['2006', 'Aaliyah 91', 'Aaron 57', 'Abagail 895', ...]
     """
     names = []
-    # fname = codecs.open("baby1990.html","r","utf-8")
+    with open(filename, "r") as f:
+        html_file = f.read()
+        for line in html_file:
+            print(line)
+    # with open(filename,"r") as f:
+    #     html_file = itertools.islice(f,3)
+    #     for line in html_file:
+    #         print(line)
+    # with open(filename, 'r') as f:
+    #     book = f.read()
+    # print(book)
+    # first open and read the file.
+    # file = open(filename, "r", encoding="utf-8")
     # print(file.read())
-    # StreamReacorder = file
-    # print(codecs.StreamRecorder.read())
-    htmlfile = open(filename, "r")
-    source = htmlfile.read()
-    print(source)
+    # with open(filename, "r", encoding='utf-8') as f:
+    #     f = source_code.read()
+    # print(source_code)
+# fname = r"/home/esibrian92/kenzie_Academy/Q3/baby-names-Esibrian92/baby1990.html"
+# source = open(fname, 'r')
+# with open(filename, "r", encoding='utf-8') as f:
+#         f = source_code.read()
+#         print(source_code)
 
 
 def create_parser():
@@ -87,7 +103,7 @@ def main(args):
     # Use the create_summary flag to decide whether to print the list
     # or to write the list to a summary file (e.g. `baby1990.html.summary`).
 
-    # +++your code here+++
+    extract_names(file_list)
 
 
 if __name__ == '__main__':
