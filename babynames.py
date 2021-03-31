@@ -34,7 +34,7 @@ Suggested milestones for incremental development:
 import sys
 import re
 import argparse
-import itertools
+import re
 
 
 def extract_names(filename):
@@ -47,8 +47,15 @@ def extract_names(filename):
     names = []
     with open(filename, "r") as f:
         html_file = f.read()
-        for line in html_file:
-            print(line)
+        for lines in html_file:
+            print(lines)
+    # names = [].extend(filename)
+    # with open(names, 'r') as filehandle:
+    #     basicList = json.load(filehandle)
+    # with open(filename, "r") as f:
+    #     html_file = f.read()
+    #     for line in html_file:
+    #         print(line)
     # with open(filename,"r") as f:
     #     html_file = itertools.islice(f,3)
     #     for line in html_file:
@@ -103,7 +110,13 @@ def main(args):
     # Use the create_summary flag to decide whether to print the list
     # or to write the list to a summary file (e.g. `baby1990.html.summary`).
 
-    extract_names(file_list)
+    for i in file_list:
+        outcome = extract_names(i)
+        if create_summary:
+            with open(f"{i}.summary", "w") as f:
+                f.write('\n'.join(outcome))
+        else:
+            print('\n'.join(outcome))
 
 
 if __name__ == '__main__':
