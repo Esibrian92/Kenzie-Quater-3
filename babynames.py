@@ -47,38 +47,13 @@ def extract_names(filename):
 
     # read the file.
     # print all text from file
-    # return a list witht the in order of year and name ranking
+    # make it in to a ditionary to get rid of duplicates
+    # return a list
+    # sort the list in alphabetical order
     names = []
     with open(filename, "r") as f:
-        html_file = f.read()
-        for lines in html_file:
-            print("/n".join(lines))
-
-    # names = [].extend(filename)
-    # with open(names, 'r') as filehandle:
-    #     basicList = json.load(filehandle)
-    # with open(filename, "r") as f:
-    #     html_file = f.read()
-    #     for line in html_file:
-    #         print(line)
-    # with open(filename,"r") as f:
-    #     html_file = itertools.islice(f,3)
-    #     for line in html_file:
-    #         print(line)
-    # with open(filename, 'r') as f:
-    #     book = f.read()
-    # print(book)
-    # first open and read the file.
-    # file = open(filename, "r", encoding="utf-8")
-    # print(file.read())
-    # with open(filename, "r", encoding='utf-8') as f:
-    #     f = source_code.read()
-    # print(source_code)
-# fname = r"/home/esibrian92/kenzie_Academy/Q3/baby-names-Esibrian92/baby1990.html"
-# source = open(fname, 'r')
-# with open(filename, "r", encoding='utf-8') as f:
-#         f = source_code.read()
-#         print(source_code)
+        for lines in f:
+            print(lines)
 
 
 def create_parser():
