@@ -44,11 +44,16 @@ def extract_names(filename):
     the name-rank strings in alphabetical order.
     ['2006', 'Aaliyah 91', 'Aaron 57', 'Abagail 895', ...]
     """
+
+    # read the file.
+    # print all text from file
+    # return a list witht the in order of year and name ranking
     names = []
     with open(filename, "r") as f:
         html_file = f.read()
         for lines in html_file:
-            print(lines)
+            print("/n".join(lines))
+
     # names = [].extend(filename)
     # with open(names, 'r') as filehandle:
     #     basicList = json.load(filehandle)
@@ -110,10 +115,12 @@ def main(args):
     # Use the create_summary flag to decide whether to print the list
     # or to write the list to a summary file (e.g. `baby1990.html.summary`).
 
-    for i in file_list:
-        outcome = extract_names(i)
+# loop through the list and call extract_names for every item in the list.
+# if create_summary is True then write a new line for every outcome
+    for file in file_list:
+        outcome = extract_names(file)
         if create_summary:
-            with open(f"{i}.summary", "w") as f:
+            with open(f"{file}.summary", "w") as f:
                 f.write('\n'.join(outcome))
         else:
             print('\n'.join(outcome))
