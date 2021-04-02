@@ -47,13 +47,21 @@ def extract_names(filename):
 
     # read the file.
     # print all text from file
+    # grab the tags from the html file
+    # grab just the names or ranking
     # make it in to a ditionary to get rid of duplicates
+    # turn it into key value pairs, ranking,name(no duplicates)
     # return a list
+    # turn the dict to a list.
     # sort the list in alphabetical order
     names = []
+    pattern = r"<td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>"
     with open(filename, "r") as f:
-        for lines in f:
-            print(lines)
+        content = f.read()
+    matches = re.findall(pattern, content)
+    print(list(matches))
+    # for match in matches:
+    #     print(match)
 
 
 def create_parser():
@@ -98,7 +106,8 @@ def main(args):
             with open(f"{file}.summary", "w") as f:
                 f.write('\n'.join(outcome))
         else:
-            print('\n'.join(outcome))
+            pass
+            # print('\n'.join(outcome))
 
 
 if __name__ == '__main__':
