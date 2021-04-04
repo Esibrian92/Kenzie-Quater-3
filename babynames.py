@@ -53,13 +53,29 @@ def extract_names(filename):
     pattern = r"<td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>"
     with open(filename, "r") as f:
         content = f.read()
+        year_patern = r"\d\d\d+"
+        year = re.findall(year_patern, filename)
     matches = re.findall(pattern, content)
-    for key, value in enumerate(matches):
-        key = key
-        value = value[1]
-        print(key, value)
-    # make it in to a ditionary to get rid of duplicates
-    #   turn it into key value pairs, ranking,name(no duplicates)
+    for name in matches:
+        names = name[1:]
+        value = name[0]
+        for key in names:
+            key = key
+        node = (key, value)
+        #got key and value 
+        # if the key is already there then take it of and replace it with the new one
+    new_node = node
+    if new_node == node:
+        node.remove(node)
+        
+    # new_dict = dict(matches)
+    # print(new_dict)
+    # for rank,names in enumerate(matches):
+    #     for i,name in enumerate(names):
+    #         name_pattern = r"\w+"
+    #         name_macthes = re.findall(name_pattern,name)
+    #         name_macthes
+    #         break
     # return a list
     #   turn the dict to a list.
     # sort the list in alphabetical order
