@@ -30,11 +30,11 @@ Suggested milestones for incremental development:
  - Build the [year, 'name rank', ... ] list and print it
  - Fix main() to use the extracted_names list
 """
+__author__ = "Erick Sibrian,JT"
 
 import sys
 import re
 import argparse
-import re
 
 
 def extract_names(filename):
@@ -50,34 +50,26 @@ def extract_names(filename):
     # grab the tags from the html file
     # grab just the names or ranking
     names = []
+    new_dict = {}
     pattern = r"<td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>"
     with open(filename, "r") as f:
         content = f.read()
         year_patern = r"\d\d\d+"
         year = re.findall(year_patern, filename)
     matches = re.findall(pattern, content)
+    # turn into dictionary
     for name in matches:
-        names = name[1:]
+        B_name, girls_name = name[1:]
         value = name[0]
-        for key in names:
-            key = key
-        node = (key, value)
-        #got key and value 
-        # if the key is already there then take it of and replace it with the new one
-    new_node = node
-    if new_node == node:
-        node.remove(node)
-        
-    # new_dict = dict(matches)
-    # print(new_dict)
-    # for rank,names in enumerate(matches):
-    #     for i,name in enumerate(names):
-    #         name_pattern = r"\w+"
-    #         name_macthes = re.findall(name_pattern,name)
-    #         name_macthes
-    #         break
-    # return a list
-    #   turn the dict to a list.
+        if B_name not in new_dict:
+            new_dict[B_name] = value
+        if girls_name not in new_dict:
+            new_dict[girls_name] = value
+    items = list(new_dict.items())
+    new_list = sorted(items, key=lambda t: t[0])
+    for char, ranking in new_list:
+        names.append(f"{char} {ranking}")
+    return year+names
     # sort the list in alphabetical order
     #   ranking first
 
@@ -124,8 +116,7 @@ def main(args):
             with open(f"{file}.summary", "w") as f:
                 f.write('\n'.join(outcome))
         else:
-            pass
-            # print('\n'.join(outcome))
+            print('\n'.join(outcome))
 
 
 if __name__ == '__main__':
