@@ -30,6 +30,7 @@ Suggested milestones for incremental development:
  - Build the [year, 'name rank', ... ] list and print it
  - Fix main() to use the extracted_names list
 """
+__author__ = "Erick Sibrian,JT"
 
 import sys
 import re
@@ -43,9 +44,34 @@ def extract_names(filename):
     the name-rank strings in alphabetical order.
     ['2006', 'Aaliyah 91', 'Aaron 57', 'Abagail 895', ...]
     """
+
+    # read the file.
+    # print all text from file
+    # grab the tags from the html file
+    # grab just the names or ranking
     names = []
-    # +++your code here+++
-    return names
+    new_dict = {}
+    pattern = r"<td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>"
+    with open(filename, "r") as f:
+        content = f.read()
+        year_patern = r"\d\d\d+"
+        year = re.findall(year_patern, filename)
+    matches = re.findall(pattern, content)
+    # turn into dictionary
+    for name in matches:
+        B_name, girls_name = name[1:]
+        value = name[0]
+        if B_name not in new_dict:
+            new_dict[B_name] = value
+        if girls_name not in new_dict:
+            new_dict[girls_name] = value
+    items = list(new_dict.items())
+    new_list = sorted(items, key=lambda t: t[0])
+    for char, ranking in new_list:
+        names.append(f"{char} {ranking}")
+    return year+names
+    # sort the list in alphabetical order
+    #   ranking first
 
 
 def create_parser():
@@ -82,7 +108,15 @@ def main(args):
     # Use the create_summary flag to decide whether to print the list
     # or to write the list to a summary file (e.g. `baby1990.html.summary`).
 
-    # +++your code here+++
+# loop through the list and call extract_names for every item in the list.
+# if create_summary is True then write a new line for every outcome
+    for file in file_list:
+        outcome = extract_names(file)
+        if create_summary:
+            with open(f"{file}.summary", "w") as f:
+                f.write('\n'.join(outcome))
+        else:
+            print('\n'.join(outcome))
 
 
 if __name__ == '__main__':
